@@ -4,9 +4,9 @@ import { Header } from './header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  imports: [RouterOutlet, Header],
 })
 export class App {
   protected readonly title = signal('angular-app');
