@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Header } from './header/header';
 import { User } from './user/user';
 import { DUMMY_USERS } from './user/dummy-users';
@@ -11,4 +11,8 @@ import { DUMMY_USERS } from './user/dummy-users';
 })
 export class App {
   users = DUMMY_USERS;
+
+  onSelectUser(id: string) {
+    console.log(`Selected user with ID: ${id}`);
+  }
 }
