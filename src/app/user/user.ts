@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+const inputOptions = { required: true };
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.html',
@@ -7,8 +9,8 @@ import { Component, Input } from '@angular/core';
   imports: [],
 })
 export class User {
-  @Input() avatar!: string;
-  @Input() name!: string;
+  @Input(inputOptions) avatar!: string;
+  @Input(inputOptions) name!: string;
 
   get imagePath() {
     return `users/${this.avatar}`;
