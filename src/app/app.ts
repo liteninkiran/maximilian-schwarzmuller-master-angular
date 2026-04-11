@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Header } from './header/header';
 import { User } from './user/user';
 import { DUMMY_USERS } from './user/dummy-users';
+import { Tasks } from './tasks/tasks';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Header, User],
+  imports: [Header, User, Tasks],
 })
 export class App {
   users = DUMMY_USERS;
+  name = signal<string>(DUMMY_USERS[0].name);
 
   onSelectUser(id: string) {
-    console.log(`Selected user with ID: ${id}`);
+    const user = this.users.find((user) => user.id === id);
+    if (user) {
+      this.name.set(user.name);
+    }
   }
 }
