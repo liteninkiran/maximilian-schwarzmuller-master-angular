@@ -6,5 +6,9 @@
     }
   </ul>
 
-  <app-tasks [name]="name()" />
+  @if (name(); as n) {
+    <app-tasks [name]="n" />
+  } @else {
+    <h2 id="fallback">Select a user to see their tasks</h2>
+  }
 </main>

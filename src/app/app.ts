@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { Header } from './header/header';
 import { User } from './user/user';
 import { Tasks } from './tasks/tasks';
@@ -12,7 +12,7 @@ import { DUMMY_USERS } from './user/dummy-users';
 })
 export class App {
   users = DUMMY_USERS;
-  name = signal<string>(DUMMY_USERS[0].name);
+  name = signal<string | undefined>(undefined);
 
   onSelectUser(id: string) {
     const user = this.users.find((user) => user.id === id);
