@@ -1,14 +1,18 @@
 <section id="tasks">
-  <header>
-    <h2>{{ user().name }}'s Tasks</h2>
-    <menu>
-      <button>Add Task</button>
-    </menu>
-  </header>
+  @if (userTasks().length > 0) {
+    <header>
+      <h2>{{ user().name }}'s Tasks</h2>
+      <menu>
+        <button>Add Task</button>
+      </menu>
+    </header>
 
-  <ul>
-    @for (task of userTasks(); track task.id) {
-      <li><app-task></app-task></li>
-    }
-  </ul>
+    <ul>
+      @for (task of userTasks(); track task.id) {
+        <li><app-task [task]="task"></app-task></li>
+      }
+    </ul>
+  } @else {
+    <h2>{{ user().name }} has no tasks</h2>
+  }
 </section>

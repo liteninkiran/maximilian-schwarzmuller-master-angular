@@ -1,4 +1,4 @@
-import { Task } from './models/task.model';
+import { TaskObject } from './models/task.model';
 import { UserObject } from './models/user.model';
 
 export const USERS: UserObject[] = [
@@ -34,7 +34,7 @@ export const USERS: UserObject[] = [
   },
 ];
 
-export const TASKS: Task[] = [
+export const TASKS: TaskObject[] = [
   {
     id: 't1',
     userId: 'u1',

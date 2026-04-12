@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TaskObject } from '../../models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './task.css',
   imports: [],
 })
-export class Task {}
+export class Task {
+  task = input.required<TaskObject>();
+}
