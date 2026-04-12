@@ -1,10 +1,6 @@
 // Angular
 import { Component, computed, inject, input, signal } from '@angular/core';
 
-// Components
-import { Task } from './task/task';
-import { NewTask } from './new-task/new-task';
-
 // Services
 import { TasksService } from '../services/tasks.service';
 
@@ -15,7 +11,7 @@ import { type UserObject } from '../models/user.model';
   selector: 'app-tasks',
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
-  imports: [Task, NewTask],
+  standalone: false,
 })
 export class Tasks {
   user = input.required<UserObject>();

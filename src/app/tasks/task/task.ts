@@ -1,9 +1,5 @@
 // Angular
 import { Component, inject, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// Components
-import { CardComponent } from '../../shared/card/card';
 
 // Services
 import { TasksService } from '../../services/tasks.service';
@@ -15,7 +11,7 @@ import { type TaskObject } from '../../models/task.model';
   selector: 'app-task',
   templateUrl: './task.html',
   styleUrl: './task.css',
-  imports: [CardComponent, CommonModule],
+  standalone: false,
 })
 export class Task {
   task = input.required<TaskObject>();

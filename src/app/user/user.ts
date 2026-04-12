@@ -1,18 +1,14 @@
 // Angular
 import { Component, computed, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// Components
-import { CardComponent } from '../shared/card/card';
 
 // Types
-import { UserObject } from '../models/user.model';
+import { type UserObject } from '../models/user.model';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.html',
   styleUrl: './user.css',
-  imports: [CommonModule, CardComponent],
+  standalone: false,
 })
 export class User {
   user = input.required<UserObject>();
