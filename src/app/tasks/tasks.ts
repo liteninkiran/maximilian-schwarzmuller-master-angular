@@ -4,6 +4,7 @@ import { NewTask } from './new-task/new-task';
 import { TASKS } from '../dummy-data';
 import { type NewTaskData, type TaskObject } from '../models/task.model';
 import { type UserObject } from '../models/user.model';
+import { TasksService } from '../services/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -12,15 +13,14 @@ import { type UserObject } from '../models/user.model';
   imports: [Task, NewTask],
 })
 export class Tasks {
-  tasks = signal(TASKS);
   user = input.required<UserObject>();
   showModal = signal(false);
-  userTasks = computed(() => this.tasks().filter((task) => task.userId === this.user().id));
+  userTasks = computed(() => this.tasksService.getUserTasks(this.user().id));
+
+  constructor(private tasksService: TasksService) {}
 
   onCompleteTask(id: string) {
-    const filterFn = (task: TaskObject) => task.id !== id;
-    const newTasks = this.tasks().filter(filterFn);
-    this.tasks.set(newTasks);
+    this.tasksService.removeTask(id);
   }
 
   onStartAddTask() {
@@ -31,24 +31,8 @@ export class Tasks {
     this.showModal.set(false);
   }
 
-  onAddTask({ title, summary, dueDate }: NewTaskData) {
-    const newId = this.maxTask() + 1;
-    const newTask: TaskObject = {
-      id: `t${newId}`,
-      userId: this.user().id,
-      title,
-      summary,
-      dueDate,
-    };
-    this.tasks.set([...this.tasks(), newTask]);
+  onAddTask(inputs: NewTaskData) {
+    this.tasksService.addTask(inputs, this.user().id);
     this.showModal.set(false);
-  }
-
-  private maxTask() {
-    const getId = (task: TaskObject) => Number(task.id.slice(1));
-    const reducer = (max: TaskObject, current: TaskObject) =>
-      getId(current) > getId(max) ? current : max;
-    const lastTask = this.tasks().reduce(reducer);
-    return getId(lastTask);
   }
 }
