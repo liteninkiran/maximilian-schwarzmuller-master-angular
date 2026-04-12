@@ -1,3 +1,7 @@
+@if (isAddingTask()) {
+  <app-new-task></app-new-task>
+}
+
 <section id="tasks">
   <header>
     @if (userTasks().length > 0) {
@@ -6,7 +10,7 @@
       <h2>{{ user().name }} has no tasks</h2>
     }
     <menu>
-      <button>Add Task</button>
+      <button (click)="onStartAddTask()">Add Task</button>
     </menu>
   </header>
 
