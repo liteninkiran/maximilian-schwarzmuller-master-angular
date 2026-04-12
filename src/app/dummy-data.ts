@@ -57,13 +57,6 @@ export const TASKS: TaskObject[] = [
     dueDate: '2024-06-15',
   },
   {
-    id: 't4',
-    userId: 'u1',
-    title: 'Master Angular',
-    summary: 'Learn all the basic and advanced features of Angular & how to apply them.',
-    dueDate: '2025-12-31',
-  },
-  {
     id: 't5',
     userId: 'u1',
     title: 'Build a portfolio app',

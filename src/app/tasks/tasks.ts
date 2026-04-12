@@ -1,7 +1,14 @@
-import { Component, computed, input, signal } from '@angular/core';
+// Angular
+import { Component, computed, inject, input, signal } from '@angular/core';
+
+// Components
 import { Task } from './task/task';
 import { NewTask } from './new-task/new-task';
+
+// Services
 import { TasksService } from '../services/tasks.service';
+
+// Types
 import { type UserObject } from '../models/user.model';
 
 @Component({
@@ -15,11 +22,7 @@ export class Tasks {
   showModal = signal(false);
   userTasks = computed(() => this.tasksService.getUserTasks(this.user().id));
 
-  constructor(private tasksService: TasksService) {}
-
-  onCompleteTask(id: string) {
-    this.tasksService.removeTask(id);
-  }
+  private tasksService = inject(TasksService);
 
   onStartAddTask() {
     this.showModal.set(true);

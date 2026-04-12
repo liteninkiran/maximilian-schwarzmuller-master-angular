@@ -1,10 +1,17 @@
+// Angular
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+// Components
 import { Header } from './header/header';
 import { User } from './user/user';
 import { Tasks } from './tasks/tasks';
+
+// Types
+import { type UserObject } from './models/user.model';
+
+// Data
 import { USERS } from './dummy-data';
-import { CommonModule } from '@angular/common';
-import { UserObject } from './models/user.model';
 
 @Component({
   selector: 'app-root',

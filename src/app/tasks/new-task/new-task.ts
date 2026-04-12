@@ -1,6 +1,11 @@
+// Angular
 import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+// Services
 import { TasksService } from '../../services/tasks.service';
+
+// Types
 import { type UserObject } from '../../models/user.model';
 
 @Component({

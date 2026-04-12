@@ -1,7 +1,12 @@
+// Angular
 import { Component, computed, input, output } from '@angular/core';
-import { UserObject } from '../models/user.model';
 import { CommonModule } from '@angular/common';
+
+// Components
 import { CardComponent } from '../shared/card/card';
+
+// Types
+import { UserObject } from '../models/user.model';
 
 @Component({
   selector: 'app-user',
