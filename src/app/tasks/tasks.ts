@@ -1,10 +1,8 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { Task } from './task/task';
 import { NewTask } from './new-task/new-task';
-import { TASKS } from '../dummy-data';
-import { type NewTaskData, type TaskObject } from '../models/task.model';
-import { type UserObject } from '../models/user.model';
 import { TasksService } from '../services/tasks.service';
+import { type UserObject } from '../models/user.model';
 
 @Component({
   selector: 'app-tasks',
@@ -27,12 +25,7 @@ export class Tasks {
     this.showModal.set(true);
   }
 
-  onCancelAddTask() {
-    this.showModal.set(false);
-  }
-
-  onAddTask(inputs: NewTaskData) {
-    this.tasksService.addTask(inputs, this.user().id);
+  onCloseModal() {
     this.showModal.set(false);
   }
 }
