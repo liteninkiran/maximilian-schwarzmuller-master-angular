@@ -1,5 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Task } from './task/task';
+import { UserObject } from '../models/user.model';
+import { TASKS } from '../dummy-data';
 
 @Component({
   selector: 'app-tasks',
@@ -8,5 +10,7 @@ import { Task } from './task/task';
   imports: [Task],
 })
 export class Tasks {
-  name = input.required<string>();
+  tasks = TASKS;
+  user = input.required<UserObject>();
+  userTasks = computed(() => this.tasks.filter((task) => task.userId === this.user().id));
 }

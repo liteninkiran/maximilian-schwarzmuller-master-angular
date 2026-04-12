@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { Header } from './header/header';
-import { User, UserObject } from './user/user';
+import { User } from './user/user';
 import { Tasks } from './tasks/tasks';
-import { DUMMY_USERS } from './user/dummy-users';
+import { USERS } from './dummy-data';
 import { CommonModule } from '@angular/common';
+import { UserObject } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [Header, User, Tasks, CommonModule],
 })
 export class App {
-  users = DUMMY_USERS;
+  users = USERS;
   selectedUser = signal<UserObject | undefined>(undefined);
 
   onSelectUser(id: string) {
