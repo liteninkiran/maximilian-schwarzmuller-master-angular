@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { type User as UserType } from './dummy-users';
 
 const inputOptions = { required: true };
 
@@ -9,16 +10,14 @@ const inputOptions = { required: true };
   imports: [],
 })
 export class User {
-  @Input(inputOptions) id!: string;
-  @Input(inputOptions) avatar!: string;
-  @Input(inputOptions) name!: string;
+  @Input(inputOptions) user!: UserType;
   @Output() select = new EventEmitter<string>();
 
   get imagePath() {
-    return `users/${this.avatar}`;
+    return `users/${this.user.avatar}`;
   }
 
   onSelectUser() {
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
