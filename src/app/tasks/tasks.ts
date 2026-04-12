@@ -30,4 +30,8 @@ export class Tasks {
   onCancelAddTask() {
     this.isAddingTask.set(false);
   }
+
+  onAddTask(inputs: any) {
+    console.log(inputs);
+  }
 }
