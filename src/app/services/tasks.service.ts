@@ -30,6 +30,9 @@ export class TasksService {
   }
 
   private maxTask() {
+    if (this.tasks().length === 0) {
+      return 0;
+    }
     const getId = (task: TaskObject) => Number(task.id.slice(1));
     const reducer = (max: TaskObject, current: TaskObject) =>
       getId(current) > getId(max) ? current : max;
