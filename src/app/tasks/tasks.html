@@ -13,7 +13,7 @@
   @if (userTasks().length > 0) {
     <ul>
       @for (task of userTasks(); track task.id) {
-        <li><app-task [task]="task"></app-task></li>
+        <li><app-task [task]="task" (complete)="onCompleteTask($event)"></app-task></li>
       }
     </ul>
   }
