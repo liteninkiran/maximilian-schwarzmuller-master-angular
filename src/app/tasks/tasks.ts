@@ -26,4 +26,8 @@ export class Tasks {
   onStartAddTask() {
     this.isAddingTask.set(true);
   }
+
+  onCancelAddTask() {
+    this.isAddingTask.set(false);
+  }
 }
