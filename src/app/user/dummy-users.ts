@@ -1,10 +1,6 @@
-export type User = {
-  id: string;
-  name: string;
-  avatar: string;
-};
+import { UserObject } from './user';
 
-export const DUMMY_USERS: User[] = [
+export const DUMMY_USERS: UserObject[] = [
   {
     id: 'u1',
     name: 'Jasmine Washington',
