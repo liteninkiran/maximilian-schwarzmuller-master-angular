@@ -19,7 +19,11 @@ button {
   text-align: left;
 }
 
-button:hover,
+button:hover {
+  background-color: #9965ddc2;
+  color: #150722;
+}
+
 button:active,
 .active {
   background-color: #9965dd;
