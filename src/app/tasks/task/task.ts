@@ -1,11 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { TaskObject } from '../../models/task.model';
+import { CardComponent } from '../../shared/card/card';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.html',
   styleUrl: './task.css',
-  imports: [],
+  imports: [CardComponent],
 })
 export class Task {
   task = input.required<TaskObject>();

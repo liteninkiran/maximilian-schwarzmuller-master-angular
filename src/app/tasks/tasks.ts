@@ -31,8 +31,7 @@ export class Tasks {
     this.showModal.set(false);
   }
 
-  onAddTask(inputs: NewTaskData) {
-    const { title, summary, dueDate } = inputs;
+  onAddTask({ title, summary, dueDate }: NewTaskData) {
     const newId = this.maxTask() + 1;
     const newTask: TaskObject = {
       id: `t${newId}`,
