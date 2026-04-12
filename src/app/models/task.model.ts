@@ -9,5 +9,5 @@ export type TaskObject = {
 export type NewTaskData = {
   title: string;
   summary: string;
-  date: string;
+  dueDate: string;
 };

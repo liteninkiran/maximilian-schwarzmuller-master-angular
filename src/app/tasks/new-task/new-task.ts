@@ -1,6 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewTaskData } from '../../models/task.model';
+import { type NewTaskData } from '../../models/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -11,19 +11,21 @@ import { NewTaskData } from '../../models/task.model';
 export class NewTask {
   cancel = output<void>();
   add = output<NewTaskData>();
-  title = signal('');
-  summary = signal('');
-  dueDate = signal('');
+  title = signal<string | null>(null);
+  summary = signal<string | null>(null);
+  dueDate = signal<string | null>(null);
 
   onCancel() {
     this.cancel.emit();
   }
 
   onSubmit() {
-    this.add.emit({
-      title: this.title(),
-      summary: this.summary(),
-      date: this.dueDate(),
-    });
+    const title = this.title();
+    const summary = this.summary();
+    const dueDate = this.dueDate();
+
+    if (title && summary && dueDate) {
+      this.add.emit({ title, summary, dueDate });
+    }
   }
 }

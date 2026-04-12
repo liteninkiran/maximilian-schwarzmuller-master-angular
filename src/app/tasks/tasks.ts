@@ -1,9 +1,9 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { Task } from './task/task';
-import { UserObject } from '../models/user.model';
-import { TASKS } from '../dummy-data';
-import { TaskObject } from '../models/task.model';
 import { NewTask } from './new-task/new-task';
+import { TASKS } from '../dummy-data';
+import { type NewTaskData, type TaskObject } from '../models/task.model';
+import { type UserObject } from '../models/user.model';
 
 @Component({
   selector: 'app-tasks',
@@ -14,7 +14,7 @@ import { NewTask } from './new-task/new-task';
 export class Tasks {
   tasks = signal(TASKS);
   user = input.required<UserObject>();
-  isAddingTask = signal(false);
+  showModal = signal(false);
   userTasks = computed(() => this.tasks().filter((task) => task.userId === this.user().id));
 
   onCompleteTask(id: string) {
@@ -24,14 +24,32 @@ export class Tasks {
   }
 
   onStartAddTask() {
-    this.isAddingTask.set(true);
+    this.showModal.set(true);
   }
 
   onCancelAddTask() {
-    this.isAddingTask.set(false);
+    this.showModal.set(false);
   }
 
-  onAddTask(inputs: any) {
-    console.log(inputs);
+  onAddTask(inputs: NewTaskData) {
+    const { title, summary, dueDate } = inputs;
+    const newId = this.maxTask() + 1;
+    const newTask: TaskObject = {
+      id: `t${newId}`,
+      userId: this.user().id,
+      title,
+      summary,
+      dueDate,
+    };
+    this.tasks.set([...this.tasks(), newTask]);
+    this.showModal.set(false);
+  }
+
+  private maxTask() {
+    const getId = (task: TaskObject) => Number(task.id.slice(1));
+    const reducer = (max: TaskObject, current: TaskObject) =>
+      getId(current) > getId(max) ? current : max;
+    const lastTask = this.tasks().reduce(reducer);
+    return getId(lastTask);
   }
 }
