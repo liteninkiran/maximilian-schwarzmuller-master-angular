@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import {
   type AnnualData,
   type InvestmentInput,
@@ -8,7 +8,7 @@ import {
   providedIn: 'root',
 })
 export class InvestmentService {
-  resultsData?: AnnualData[];
+  resultsData = signal<AnnualData[] | undefined>(undefined);
 
   calculateProjection(data: InvestmentInput) {
     const {
@@ -37,6 +37,6 @@ export class InvestmentService {
       annualData.push(yearData);
     }
 
-    this.resultsData = annualData;
+    this.resultsData.set(annualData);
   }
 }
