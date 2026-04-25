@@ -12,7 +12,7 @@ import { InvestmentInput } from '../investment-input.model';
 export class UserInputComponent {
   calculate = output<InvestmentInput>();
 
-  enteredInitialInvestment = '0';
+  enteredInitialInvestment = '1000';
   enteredAnnualInvestment = '0';
   enteredExpectedReturn = '5';
   enteredDuration = '10';
