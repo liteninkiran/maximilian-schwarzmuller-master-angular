@@ -1,16 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
-import { FormData } from './user-input/user-input.component';
-
-export type AnnualData = {
-  year: number;
-  interest: number;
-  valueEndOfYear: number;
-  annualInvestment: number;
-  totalInterest: number;
-  totalInvested: number;
-};
+import { InvestmentInput, AnnualData } from './investment-input.model';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +10,12 @@ export type AnnualData = {
   imports: [HeaderComponent, UserInputComponent],
 })
 export class AppComponent {
-  onCalculateInvestmentResults(data: FormData) {
+  onCalculateInvestmentResults(data: InvestmentInput) {
     const investments = this.calculateInvestmentResults(data);
     console.log(investments);
   }
 
-  calculateInvestmentResults(data: FormData) {
+  calculateInvestmentResults(data: InvestmentInput) {
     const {
       initialInvestment: initial,
       annualInvestment: annual,

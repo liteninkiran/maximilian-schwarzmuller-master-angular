@@ -1,12 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-export type FormData = {
-  initialInvestment: number;
-  duration: number;
-  expectedReturn: number;
-  annualInvestment: number;
-};
+import { InvestmentInput } from '../investment-input.model';
 
 @Component({
   selector: 'app-user-input',
@@ -16,7 +10,7 @@ export type FormData = {
   imports: [FormsModule],
 })
 export class UserInputComponent {
-  calculate = output<FormData>();
+  calculate = output<InvestmentInput>();
 
   enteredInitialInvestment = '0';
   enteredAnnualInvestment = '0';
