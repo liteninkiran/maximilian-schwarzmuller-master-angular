@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
+import { FormData } from './user-input/user-input.component';
 
-type Data = {
-  initialInvestment: number;
-  duration: number;
-  expectedReturn: number;
+export type AnnualData = {
+  year: number;
+  interest: number;
+  valueEndOfYear: number;
   annualInvestment: number;
+  totalInterest: number;
+  totalInvested: number;
 };
 
 @Component({
@@ -16,26 +19,36 @@ type Data = {
   imports: [HeaderComponent, UserInputComponent],
 })
 export class AppComponent {
-  calculateInvestmentResults(data: Data) {
-    const { initialInvestment, annualInvestment, expectedReturn, duration } =
-      data;
-    const annualData = [];
-    let investmentValue = initialInvestment;
+  onCalculateInvestmentResults(data: FormData) {
+    const investments = this.calculateInvestmentResults(data);
+    console.log(investments);
+  }
+
+  calculateInvestmentResults(data: FormData) {
+    const {
+      initialInvestment: initial,
+      annualInvestment: annual,
+      expectedReturn: expected,
+      duration,
+    } = data;
+    const annualData: AnnualData[] = [];
+    let valueEndOfYear = initial;
 
     for (let i = 0; i < duration; i++) {
       const year = i + 1;
-      const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-      investmentValue += interestEarnedInYear + annualInvestment;
-      const totalInterest =
-        investmentValue - annualInvestment * year - initialInvestment;
-      annualData.push({
-        year: year,
-        interest: interestEarnedInYear,
-        valueEndOfYear: investmentValue,
-        annualInvestment: annualInvestment,
-        totalInterest: totalInterest,
-        totalAmountInvested: initialInvestment + annualInvestment * year,
-      });
+      const interest = valueEndOfYear * (expected / 100);
+      valueEndOfYear += interest + annual;
+      const totalInterest = valueEndOfYear - annual * year - initial;
+      const totalInvested = initial + annual * year;
+      const yearData = {
+        year,
+        interest,
+        valueEndOfYear,
+        annualInvestment: annual,
+        totalInterest,
+        totalInvested,
+      };
+      annualData.push(yearData);
     }
 
     return annualData;
