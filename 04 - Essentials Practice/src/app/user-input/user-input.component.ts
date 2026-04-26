@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { InvestmentService } from '../investment.service';
 
 const enteredInitialInvestment = '1000';
@@ -11,8 +10,7 @@ const enteredDuration = '10';
   selector: 'app-user-input',
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css',
-  standalone: true,
-  imports: [FormsModule],
+  standalone: false,
 })
 export class UserInputComponent {
   enteredInitialInvestment = signal(enteredInitialInvestment);
