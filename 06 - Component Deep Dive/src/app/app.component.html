@@ -2,22 +2,16 @@
 
 <main>
   <div id="dashboard">
-    <div class="dashboard-item">
-      <app-dashboard-item [title]="serverTitle" [image]="serverImage">
-        <app-server-status></app-server-status>
-      </app-dashboard-item>
-    </div>
+    <app-dashboard-item [title]="serverTitle" [image]="serverImage">
+      <app-server-status></app-server-status>
+    </app-dashboard-item>
 
-    <div class="dashboard-item">
-      <app-dashboard-item [title]="trafficTitle" [image]="trafficImage">
-        <app-traffic></app-traffic>
-      </app-dashboard-item>
-    </div>
+    <app-dashboard-item [title]="trafficTitle" [image]="trafficImage">
+      <app-traffic></app-traffic>
+    </app-dashboard-item>
 
-    <div class="dashboard-item">
-      <app-dashboard-item [title]="ticketsTitle" [image]="ticketsImage">
-        <app-tickets></app-tickets>
-      </app-dashboard-item>
-    </div>
+    <app-dashboard-item [title]="ticketsTitle" [image]="ticketsImage">
+      <app-tickets></app-tickets>
+    </app-dashboard-item>
   </div>
 </main>

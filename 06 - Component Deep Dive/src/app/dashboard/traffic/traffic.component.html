@@ -1,15 +1,9 @@
-<article>
-  <header>
-    <img src="globe.png" alt="A globe" />
-    <h2>Traffic</h2>
-  </header>
-  <div id="traffic">
-    <p>Last 7 days</p>
+<div id="traffic">
+  <p>Last 7 days</p>
 
-    <div id="chart">
-      @for (dataPoint of data(); track dataPoint.id) {
-        <div [style.height]="dataPoint.height"></div>
-      }
-    </div>
+  <div id="chart">
+    @for (dataPoint of data(); track dataPoint.id) {
+      <div [style.height]="dataPoint.height"></div>
+    }
   </div>
-</article>
+</div>
