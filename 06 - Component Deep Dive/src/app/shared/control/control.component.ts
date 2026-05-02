@@ -5,6 +5,9 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'control',
+  },
   standalone: true,
   imports: [],
 })
