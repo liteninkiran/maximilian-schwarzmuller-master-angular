@@ -1,9 +1,7 @@
-<div id="traffic">
-  <p>Last 7 days</p>
+<p>Last 7 days</p>
 
-  <div id="chart">
-    @for (dataPoint of data(); track dataPoint.id) {
-      <div [style.height]="dataPoint.height"></div>
-    }
-  </div>
+<div id="chart">
+  @for (dataPoint of data(); track dataPoint.id) {
+    <div [style.height]="dataPoint.height"></div>
+  }
 </div>
