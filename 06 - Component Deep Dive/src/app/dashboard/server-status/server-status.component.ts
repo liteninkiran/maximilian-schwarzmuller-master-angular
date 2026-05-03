@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 type Status = 'online' | 'offline' | 'unknown';
 
@@ -10,8 +10,9 @@ type Status = 'online' | 'offline' | 'unknown';
   standalone: true,
   imports: [CommonModule],
 })
-export class ServerStatusComponent implements OnInit {
+export class ServerStatusComponent implements OnInit, OnDestroy {
   currentStatus: Status = 'online';
+  private interval?: ReturnType<typeof setInterval>;
 
   constructor() {}
 
@@ -19,8 +20,12 @@ export class ServerStatusComponent implements OnInit {
     this.setChangeStatus();
   }
 
+  ngOnDestroy() {
+    clearTimeout(this.interval);
+  }
+
   private setChangeStatus() {
-    setInterval(() => {
+    const changeFn = () => {
       const rnd = Math.random();
       if (rnd < 0.5) {
         this.currentStatus = 'online';
@@ -29,6 +34,7 @@ export class ServerStatusComponent implements OnInit {
       } else {
         this.currentStatus = 'unknown';
       }
-    }, 5000);
+    };
+    this.interval = setInterval(changeFn, 5000);
   }
 }
