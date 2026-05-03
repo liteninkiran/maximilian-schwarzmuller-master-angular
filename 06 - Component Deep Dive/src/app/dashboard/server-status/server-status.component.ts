@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
 })
 export class ServerStatusComponent {
   currentStatus = 'online';
