@@ -30,19 +30,18 @@ export class LifecycleComponent
     AfterViewChecked,
     OnDestroy
 {
-  @Input() text?: string;
+  @Input() text?: string = 'Hello';
 
   constructor() {
-    console.log('CONSTRUCTOR');
+    console.log('CONSTRUCTOR', this.text);
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
+    console.log('ngOnInit', this.text);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges');
-    console.log(changes);
+    console.log('ngOnChanges', changes);
   }
 
   ngDoCheck() {
