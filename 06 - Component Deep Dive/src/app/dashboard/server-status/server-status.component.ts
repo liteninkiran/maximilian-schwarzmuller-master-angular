@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 type Status = 'online' | 'offline' | 'unknown';
 
@@ -10,10 +10,16 @@ type Status = 'online' | 'offline' | 'unknown';
   standalone: true,
   imports: [CommonModule],
 })
-export class ServerStatusComponent {
+export class ServerStatusComponent implements OnInit {
   currentStatus: Status = 'online';
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
+    this.setChangeStatus();
+  }
+
+  private setChangeStatus() {
     setInterval(() => {
       const rnd = Math.random();
       if (rnd < 0.5) {
