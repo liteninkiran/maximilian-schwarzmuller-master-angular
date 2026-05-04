@@ -1,10 +1,11 @@
 import {
+  AfterContentInit,
   Component,
-  contentChild,
   ContentChild,
+  contentChild,
   ElementRef,
-  inject,
   input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -23,14 +24,20 @@ type InputRef = ElementRef<InputElement>;
   standalone: true,
   imports: [],
 })
-export class ControlComponent {
+export class ControlComponent implements AfterContentInit, OnInit {
   label = input.required<string>();
-  private el = inject(ElementRef);
-  // @ContentChild('input') private control?: InputRef;
-  private control = contentChild.required<InputRef>('input');
+  // private control = contentChild.required<InputRef>('input');
+  @ContentChild('input') private control?: InputRef;
 
   onClick() {
-    // console.log(this.el);
-    console.log(this.control());
+    console.log(this.control);
+  }
+
+  ngOnInit() {
+    console.log('On Init', this.control);
+  }
+
+  ngAfterContentInit() {
+    console.log('After Content Init', this.control);
   }
 }
