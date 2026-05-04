@@ -20,12 +20,12 @@ type FormElement = ElementRef<HTMLFormElement>;
   imports: [ButtonComponent, ControlComponent, FormsModule],
 })
 export class NewTicketComponent implements AfterViewInit, OnInit {
-  // private form = viewChild.required<FormElement>('form');
-  @ViewChild('input') private form?: FormElement;
+  private form = viewChild.required<FormElement>('form');
+  // @ViewChild('input') private form?: FormElement;
 
   onSubmit(title: string, request: string) {
     console.log(title, request);
-    this.form?.nativeElement.reset();
+    this.form().nativeElement.reset();
   }
 
   ngOnInit() {

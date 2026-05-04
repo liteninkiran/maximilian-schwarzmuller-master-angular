@@ -1,5 +1,7 @@
 import {
   AfterContentInit,
+  afterNextRender,
+  afterRender,
   Component,
   ContentChild,
   contentChild,
@@ -29,15 +31,24 @@ export class ControlComponent implements AfterContentInit, OnInit {
   // private control = contentChild.required<InputRef>('input');
   @ContentChild('input') private control?: InputRef;
 
+  constructor() {
+    afterRender(() => {
+      console.log('After Render');
+    });
+    afterNextRender(() => {
+      console.log('After Next Render');
+    });
+  }
+
   onClick() {
     console.log(this.control);
   }
 
   ngOnInit() {
-    console.log('On Init', this.control);
+    // console.log('On Init', this.control);
   }
 
   ngAfterContentInit() {
-    console.log('After Content Init', this.control);
+    // console.log('After Content Init', this.control);
   }
 }
