@@ -4,3 +4,8 @@ export type Ticket = {
   request: string;
   status: 'open' | 'closed';
 };
+
+export type NewTicketData = {
+  title: string;
+  text: string;
+};

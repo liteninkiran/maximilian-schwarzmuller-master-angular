@@ -25,7 +25,7 @@ export class ServerStatusComponent implements OnInit {
     effect((onCleanup) => {
       const tasks = signal([{ id: 1 }, { id: 2 }]);
       const timer = setTimeout(() => {
-        console.log(`Current number of tasks: ${tasks().length}`);
+        // console.log(`Current number of tasks: ${tasks().length}`);
       }, 1000);
       onCleanup(() => {
         clearTimeout(timer);
