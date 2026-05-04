@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 
 type Status = 'online' | 'offline' | 'unknown';
 
@@ -11,10 +18,14 @@ type Status = 'online' | 'offline' | 'unknown';
   imports: [CommonModule],
 })
 export class ServerStatusComponent implements OnInit {
-  currentStatus: Status = 'online';
+  currentStatus = signal<Status>('offline');
   private destroyRef = inject(DestroyRef);
 
-  constructor() {}
+  constructor() {
+    effect(() => {
+      console.log(this.currentStatus());
+    });
+  }
 
   ngOnInit() {
     this.setChangeStatus();
@@ -24,11 +35,11 @@ export class ServerStatusComponent implements OnInit {
     const changeFn = () => {
       const rnd = Math.random();
       if (rnd < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     };
     const interval = setInterval(changeFn, 5000);

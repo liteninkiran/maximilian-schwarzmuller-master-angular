@@ -32,12 +32,12 @@ export class ControlComponent implements AfterContentInit, OnInit {
   @ContentChild('input') private control?: InputRef;
 
   constructor() {
-    afterRender(() => {
-      console.log('After Render');
-    });
-    afterNextRender(() => {
-      console.log('After Next Render');
-    });
+    // afterRender(() => {
+    //   console.log('After Render');
+    // });
+    // afterNextRender(() => {
+    //   console.log('After Next Render');
+    // });
   }
 
   onClick() {
