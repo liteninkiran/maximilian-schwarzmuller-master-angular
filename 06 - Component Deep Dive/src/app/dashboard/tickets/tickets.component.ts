@@ -7,20 +7,20 @@ const tickets: Ticket[] = [
   {
     id: '1',
     title: 'Ticket 1',
-    request: 'xxx',
+    request: 'Please complete the following tasks...',
     status: 'open',
   },
   {
     id: '2',
     title: 'Ticket 2',
-    request: 'xxx',
+    request: 'Close other ticket',
     status: 'open',
   },
   {
     id: '3',
     title: 'Ticket 3',
-    request: 'xxx',
-    status: 'closed',
+    request: 'Finish training course',
+    status: 'open',
   },
 ];
 
@@ -43,5 +43,11 @@ export class TicketsComponent {
     });
 
     console.log(this.tickets);
+  }
+
+  onCloseTicket(id: string) {
+    this.tickets = this.tickets.map((ticket) =>
+      ticket.id === id ? { ...ticket, status: 'closed' } : ticket,
+    );
   }
 }
