@@ -3,8 +3,8 @@
     @for (ticket of tickets; track ticket.id) {
       <li>
         <app-ticket
-          [ticket]="ticket"
-          (closeTicket)="onCloseTicket(ticket.id)"
+          [theTicket]="ticket"
+          (onCloseTicket)="onCloseTicket(ticket.id)"
         ></app-ticket>
       </li>
     } @empty {

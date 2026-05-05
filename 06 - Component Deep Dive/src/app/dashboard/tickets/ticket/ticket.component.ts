@@ -9,8 +9,13 @@ import { Ticket } from '../ticket.model';
   imports: [],
 })
 export class TicketComponent {
-  ticket = input.required<Ticket>();
-  closeTicket = output<void>();
+  ticket = input.required<Ticket>({
+    alias: 'theTicket',
+  });
+
+  closeTicket = output<void>({
+    alias: 'onCloseTicket',
+  });
   detailsVisible = signal(true);
 
   onToggleDetails() {
