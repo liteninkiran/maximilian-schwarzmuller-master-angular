@@ -4,7 +4,12 @@
   <hr />
 
   <app-auth></app-auth>
-  <ng-template appAuth="admin">
-    <p>Only admins should see this</p>
-  </ng-template>
+
+  <p *appAuth="authUser" class="protected-content admin">Admin User</p>
+
+  <p *appAuth="stdUser" class="protected-content unauthenticated">
+    Standard User
+  </p>
+
+  <p *appAuth="guestUser" class="protected-content authenticated">Guest User</p>
 </main>
