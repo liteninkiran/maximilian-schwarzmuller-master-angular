@@ -1,10 +1,8 @@
-import { Component, ElementRef, OnInit, output, signal } from '@angular/core';
+import { Component, OnInit, output, signal } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
 import { NewTicketData } from '../ticket.model';
-
-type FormElement = ElementRef<HTMLFormElement>;
 
 @Component({
   selector: 'app-new-ticket',
@@ -19,7 +17,7 @@ export class NewTicketComponent implements OnInit {
   public title = signal('');
 
   onSubmit() {
-    const data = {
+    const data: NewTicketData = {
       title: this.title(),
       text: this.text(),
     };
