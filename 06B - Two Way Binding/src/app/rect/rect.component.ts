@@ -20,9 +20,6 @@ export const RECT_SIZE: Size = {
 export class RectComponent {
   size = model.required<Size>();
 
-  // @Input({ required: true }) size!: Size;
-  // @Output() sizeChange = new EventEmitter<Size>();
-
   onReset() {
     this.size.set(RECT_SIZE);
   }
