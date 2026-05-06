@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, model } from '@angular/core';
+
+export type Size = {
+  width: string;
+  height: string;
+};
+
+export const RECT_SIZE: Size = {
+  width: '200',
+  height: '100',
+};
 
 @Component({
   selector: 'app-rect',
-  standalone: true,
-  imports: [],
   templateUrl: './rect.component.html',
   styleUrl: './rect.component.css',
+  standalone: true,
+  imports: [],
 })
 export class RectComponent {
-  // Todo: Implement custom two-way binding
+  size = model.required<Size>();
+
+  // @Input({ required: true }) size!: Size;
+  // @Output() sizeChange = new EventEmitter<Size>();
 
   onReset() {
-    // ...
+    this.size.set(RECT_SIZE);
   }
 }

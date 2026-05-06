@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   templateUrl: './app.component.html',
+  standalone: true,
   imports: [RectComponent, FormsModule],
 })
 export class AppComponent {
   rectSize = {
-    width: '100',
-    height: '100',
+    width: '500',
+    height: '600',
   };
 }
