@@ -1,4 +1,11 @@
-import { Directive, effect, inject, input } from '@angular/core';
+import {
+  Directive,
+  effect,
+  inject,
+  input,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 import { Permission } from './auth.model';
 import { AuthService } from './auth.service';
 
@@ -7,14 +14,17 @@ import { AuthService } from './auth.service';
   standalone: true,
 })
 export class AuthDirective {
-  public userType = input.required<Permission>();
+  public userType = input.required<Permission>({ alias: 'appAuth' });
   private authService = inject(AuthService);
+  private templateRef = inject(TemplateRef);
+  private viewContRef = inject(ViewContainerRef);
+
   constructor() {
     effect(() => {
       if (this.authService.activePermission() === this.userType()) {
-        console.log('Show element');
+        this.viewContRef.createEmbeddedView(this.templateRef);
       } else {
-        console.log('Hide element');
+        this.viewContRef.clear();
       }
     });
   }
