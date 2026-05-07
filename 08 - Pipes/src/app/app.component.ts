@@ -9,11 +9,10 @@ import { TemperaturePipe } from './temperature.pipe';
   imports: [CommonModule, TemperaturePipe],
 })
 export class AppComponent {
-  numberPipeFormat = '1.1-2';
   currentDate = new Date();
-  currentTemperaturs = {
+  currentTemperatures = {
     berlin: 4.2749812,
-    newYork: 18.1214,
+    newYork: 18.0214,
     paris: 72.700456,
     chicago: 65.50375238,
   };
