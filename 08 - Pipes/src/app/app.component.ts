@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   templateUrl: './app.component.html',
+  standalone: true,
+  imports: [CommonModule],
 })
 export class AppComponent {
   currentDate = new Date();
