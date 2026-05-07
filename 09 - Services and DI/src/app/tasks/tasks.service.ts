@@ -1,7 +1,13 @@
 import { Injectable, signal } from '@angular/core';
-import { Task } from './task.model';
+import { EXAMPLE_TASKS, Task, TaskStatus } from './task.model';
 
 type NewTaskData = Omit<Task, 'id' | 'status'>;
+
+type Config = {
+  status: TaskStatus;
+  task: Task;
+  taskId?: string;
+};
 
 const taskFromData = (taskData: NewTaskData) =>
   ({
@@ -13,18 +19,25 @@ const addTask = (oldTasks: Task[], taskData: NewTaskData) => [
   ...oldTasks,
   taskFromData(taskData),
 ];
+const updatedTaskStatus = ({ task, status }: Config) => ({ ...task, status });
+const updateTaskStatus = ({ task, status, taskId }: Config) =>
+  task.id === taskId ? updatedTaskStatus({ task, status }) : task;
+const updateStatus = (oldTasks: Task[], taskId: string, status: TaskStatus) =>
+  oldTasks.map((task: Task) => updateTaskStatus({ task, taskId, status }));
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private tasks = signal<Task[]>([]);
+  private tasks = signal<Task[]>(EXAMPLE_TASKS);
 
-  getAllTasks() {
-    return this.tasks.asReadonly();
-  }
+  getAllTasks = this.tasks.asReadonly();
 
   addTask(taskData: NewTaskData) {
     this.tasks.update((oldTasks) => addTask(oldTasks, taskData));
+  }
+
+  updateTaskStatus(taskId: string, status: TaskStatus) {
+    this.tasks.update((oldTasks) => updateStatus(oldTasks, taskId, status));
   }
 }
