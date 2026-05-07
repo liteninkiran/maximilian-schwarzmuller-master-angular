@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { TemperaturePipe } from './temperature.pipe';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TemperaturePipe],
 })
 export class AppComponent {
   numberPipeFormat = '1.1-2';
