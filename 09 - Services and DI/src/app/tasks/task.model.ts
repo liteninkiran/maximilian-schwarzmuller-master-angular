@@ -9,19 +9,19 @@ export interface Task {
 
 export const EXAMPLE_TASKS: Task[] = [
   {
-    id: '1-1-1-1-1',
+    id: crypto.randomUUID(),
     title: 'Task 1',
     description: 'Task 1 - description',
     status: 'DONE',
   },
   {
-    id: '1-1-1-1-2',
+    id: crypto.randomUUID(),
     title: 'Task 2',
     description: 'Task 2 - description',
     status: 'IN_PROGRESS',
   },
   {
-    id: '1-1-1-1-3',
+    id: crypto.randomUUID(),
     title: 'Task 3',
     description: 'Task 3 - description',
     status: 'OPEN',
