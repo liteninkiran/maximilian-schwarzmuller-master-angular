@@ -18,7 +18,11 @@ const addTask = (oldTasks: Task[], taskData: NewTaskData) => [
   providedIn: 'root',
 })
 export class TasksService {
-  tasks = signal<Task[]>([]);
+  private tasks = signal<Task[]>([]);
+
+  getAllTasks() {
+    return this.tasks.asReadonly();
+  }
 
   addTask(taskData: NewTaskData) {
     this.tasks.update((oldTasks) => addTask(oldTasks, taskData));
