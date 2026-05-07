@@ -7,7 +7,7 @@ type Direction = 'asc' | 'desc';
 @Pipe({
   name: 'sort',
   standalone: true,
-  pure: true,
+  pure: false,
 })
 export class SortPipe implements PipeTransform {
   transform(value: InputValues, direction: Direction = 'asc') {
