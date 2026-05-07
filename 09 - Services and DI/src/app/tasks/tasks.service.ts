@@ -3,7 +3,7 @@ import { Task } from './task.model';
 
 type NewTaskData = Omit<Task, 'id' | 'status'>;
 
-const getTask = (taskData: NewTaskData) =>
+const taskFromData = (taskData: NewTaskData) =>
   ({
     ...taskData,
     id: crypto.randomUUID(),
@@ -11,7 +11,7 @@ const getTask = (taskData: NewTaskData) =>
   }) as Task;
 const addTask = (oldTasks: Task[], taskData: NewTaskData) => [
   ...oldTasks,
-  getTask(taskData),
+  taskFromData(taskData),
 ];
 
 @Injectable({
