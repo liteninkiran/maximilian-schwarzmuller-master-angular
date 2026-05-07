@@ -1,4 +1,5 @@
 import { Directive, ElementRef, inject, input } from '@angular/core';
+import { LogDirective } from './log.directive';
 
 type AnchorRef = ElementRef<HTMLAnchorElement>;
 
@@ -8,6 +9,7 @@ type AnchorRef = ElementRef<HTMLAnchorElement>;
   host: {
     '(click)': 'onConfirmLeavePage($event)',
   },
+  hostDirectives: [LogDirective],
 })
 export class SafeLinkDirective {
   public queryParam = input('myApp');
