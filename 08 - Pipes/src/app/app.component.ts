@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TemperaturePipe } from './temperature.pipe';
-import { SortPipe } from './sort.pipe';
+import { sortDesFn } from './helper';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [CommonModule, TemperaturePipe, SortPipe],
+  imports: [CommonModule, TemperaturePipe],
 })
 export class AppComponent {
   currentDate = new Date();
@@ -21,6 +21,10 @@ export class AppComponent {
   historicTemperatures = [
     25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5,
   ];
+
+  constructor() {
+    this.historicTemperatures.sort(sortDesFn);
+  }
 
   onReset(index: number) {
     // const temps = [...this.historicTemperatures];
