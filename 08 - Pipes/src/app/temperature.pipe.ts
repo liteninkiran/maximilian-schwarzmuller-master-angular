@@ -4,6 +4,7 @@ export type TempScale = 'c' | 'f';
 type ConversionKey = `${TempScale}:${TempScale}`;
 type ConversionFn = (value: number) => number;
 type Converters = Record<ConversionKey, ConversionFn>;
+type TempInput = string | number | null;
 
 const converters: Converters = {
   'c:f': (v) => (v * 9) / 5 + 32,
@@ -18,9 +19,9 @@ const converters: Converters = {
 })
 export class TemperaturePipe implements PipeTransform {
   transform(
-    value: string | number,
-    inputScale: TempScale = 'c',
-    outputScale: TempScale = 'c',
+    value: TempInput,
+    inputScale: TempScale,
+    outputScale: TempScale = inputScale,
   ): string {
     // These are are equivalent:
     //   value == null
