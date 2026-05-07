@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
-
 import { TaskItemComponent } from './task-item/task-item.component';
 
 @Component({
   selector: 'app-tasks-list',
-  standalone: true,
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css',
+  standalone: true,
   imports: [TaskItemComponent],
 })
 export class TasksListComponent {
