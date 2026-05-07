@@ -8,12 +8,13 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
 })
 export class AppComponent {
+  numberPipeFormat = '1.1-2';
   currentDate = new Date();
   currentTemperaturs = {
     berlin: 4.2749812,
     newYork: 18.1214,
-    paris: 72.1209001,
-    chicago: 65.0775238,
+    paris: 72.700456,
+    chicago: 65.50375238,
   };
 
   historicTemperatures = [
